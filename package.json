@@ -7,21 +7,36 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "prestart": "npm run --prefix client build",
     "start": "node .",
-    "posttest": "npm run lint && nsp check"
+    "start-dev": "concurrently \"nodemon .\" \"npm start --prefix client\"",
+    "postinstall": "npm install --prefix client",
+    "posttest": "npm run lint &amp;&amp; nsp check"
   },
   "dependencies": {
+    "antd": "^3.11.0",
     "compression": "^1.0.3",
+    "concurrently": "^4.1.0",
     "cors": "^2.5.2",
     "helmet": "^1.3.0",
+    "loopback": "^3.0.0",
     "loopback-boot": "^2.6.5",
-    "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^2.0.0",
     "loopback-component-explorer": "^5.0.0",
-    "loopback": "^3.0.0"
+    "ramda": "^0.26.1",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.7",
+    "redux-form": "^7.4.2",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "serve-favicon": "^2.0.1",
+    "strong-error-handler": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.17.1",
+    "eslint": "5.6.0",
     "eslint-config-loopback": "^8.0.0",
     "nsp": "^2.1.0"
   },

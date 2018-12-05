@@ -2,10 +2,26 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+// 1. Include 'path' package
+var path = require('path');
 
 var app = module.exports = loopback();
 
 app.start = function() {
+  // 2. Get the FQPN of the index file in client
+  var staticFolder = path.dirname(
+    path.resolve(__dirname, '..', app.get('indexFile'))
+  );
+  app.get('/api', (req, res) => {
+  //  Here I should manage the routes to get a helper
+  // intersect with the index.html and the root of react
+  // Using this as a Server Side Rendering
+  // But I did not prepare the app for being used with ES5
+  // So I'd have to configure webpack with compile it for me.
+    res.send('200');
+  });
+  // 3. Set staticFolder as static in the server
+  app.use(loopback.static(staticFolder));
   // start the web server
   return app.listen(function() {
     app.emit('started');
